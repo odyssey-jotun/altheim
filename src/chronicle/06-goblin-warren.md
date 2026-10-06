@@ -21,7 +21,7 @@ The deeper the company pushed into the warren, the more obvious it became that t
 
 The adventurers ultimately fought their way into the heart of the settlement and defeated the resistance they found there.
 
-They freed every prisoner held inside the warren. Among those rescued was Guzzard, who ultimately left the warren with the adventurers.
+They freed every prisoner held inside the warren. Among those rescued was Guzzard, a goblin, and a funny one, who ultimately left the warren with the adventurers.
 
 The company also recovered the contents of the goblin chieftain's hoard, including property stolen during the attack on the Guild.
 

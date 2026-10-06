@@ -23,7 +23,7 @@ The creatures they encountered there, Blind Fang and the Giant Bats among them, 
 
 Their investigation of the beasts' lair produced one particularly strange discovery: three furry white eggs.
 
-Whatever creatures might eventually emerge from them was not immediately apparent.
+They were Blind Fang's own, her young, not yet hatched.
 
 The company chose to take all three.
 

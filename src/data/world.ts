@@ -39,8 +39,8 @@ export const people: Entry[] = [
   },
   {
     name: 'Guzzard',
-    tag: 'Freed from the Goblin Warren',
-    text: ['One of the prisoners the company freed from the Goblin Warren. Guzzard left the warren with the adventurers.'],
+    tag: 'The funny goblin',
+    text: ["A goblin the warren's own goblins were holding prisoner. The company freed him in Session Three, he made them laugh, and he left the warren with them."],
   },
   {
     name: 'The elven Guild clerk',
@@ -51,7 +51,7 @@ export const people: Entry[] = [
     name: 'The druid of the Greybough',
     tag: 'Ashmere',
     text: [
-      'One of the druids investigating the corruption spreading through the Greybough. Valith left one of the three white eggs in the druid’s care.',
+      "One of the druids investigating the corruption spreading through the Greybough. Valith left one of Blind Fang's eggs in the druid's care.",
     ],
   },
   {
@@ -75,7 +75,7 @@ export const bestiary: Entry[] = [
     art: 'blind-fang',
     text: [
       'An enormous scarred female bat, far larger than others of her kind, with thick gray fur around her neck and a ruined eye whose scar gave her her name.',
-      'Her lair held three furry white eggs. What will hatch from them is still unknown.',
+      "Her lair held three furry white eggs: her own young, not yet hatched. The company carried all three away.",
     ],
   },
   {
@@ -107,6 +107,11 @@ export const bestiary: Entry[] = [
     ],
   },
   {
+    name: 'Ice Elementals',
+    tag: 'The dwarven mine, Session Four',
+    text: ['Small, strange elementals of ice haunting a dwarven mine. The dwarves who worked it took them for poltergeists and were afraid to go below. The company went down and fought them. Their proper name is still unknown.'],
+  },
+  {
     name: 'Frost Giants',
     tag: 'Beyond the Spine of the World',
     text: ['Invaded Altheim generations ago under High King Hrothgar and were driven back into the mountains. They have not been seen since.'],
@@ -114,7 +119,7 @@ export const bestiary: Entry[] = [
 ];
 
 export const questions = [
-  "What exactly are the strange white eggs recovered from Blind Fang's cave?",
+  "What will hatch from Blind Fang's eggs, and what will her young make of the people who killed their mother?",
   'What is happening within the Greybough?',
   'What became of the goblin chieftain and those who escaped with him?',
   'What other forces were connected to the events surrounding the Silent Bell?',

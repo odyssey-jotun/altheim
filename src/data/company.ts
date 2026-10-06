@@ -27,12 +27,12 @@ export const company: Hero[] = [
       "A young hero distracted by the details of his own growing legend. His strength is rivaled only by his generous heart, and by his fondness for his own reflection.",
     deeds: [
       'Fought the Giant Bats and Blind Fang in White Elk Vale.',
-      "Took one of the three white eggs from Blind Fang's cave, and still keeps it.",
+      "Took one of Blind Fang's eggs from her cave, and still keeps it.",
       'Fought the wolves at the Fallen Timber.',
       'Earned Silver Rank with the company.',
       'Pursued the fleeing goblin chieftain out of the warren with Seamus.',
     ],
-    carrying: ['One of the furry white eggs from Blind Fang’s lair'],
+    carrying: ["One of Blind Fang's eggs, not yet hatched"],
   },
   {
     slug: 'jack-of-blades',
@@ -89,7 +89,7 @@ export const company: Hero[] = [
       "A sorcerer whose fire answers faster than her caution. The flames that won the fight at the Fallen Timber also took the workers trapped inside it, and Valith carries that. She is as quick to mend as to burn: her hands set the Silent Bell ringing again.",
     deeds: [
       'Fought the Giant Bats and Blind Fang in White Elk Vale.',
-      'Gave one of the three white eggs to a druid investigating the Greybough at Ashmere.',
+      "Gave one of Blind Fang's eggs to a druid investigating the Greybough at Ashmere.",
       "Cast Aganazzar's Scorcher at the Fallen Timber. The fire spread, and trapped workers died.",
       'Earned Silver Rank with the company.',
       'Repaired the damaged Guild bell so the waystation could ring again.',
@@ -109,12 +109,12 @@ export const company: Hero[] = [
       "A scout who trusts tracks over testimony. Where the others saw a raid, Wonnelly saw a trail stamped in too neatly to be real, and followed the true one to the goblins' door. As her card says, the wilds leave no secrets for long.",
     deeds: [
       'Fought the Giant Bats and Blind Fang in White Elk Vale.',
-      "Took one of the three white eggs from Blind Fang's cave, and still keeps it.",
+      "Took one of Blind Fang's eggs from her cave, and still keeps it.",
       'Fought the wolves at the Fallen Timber.',
       'Earned Silver Rank with the company.',
       'Saw through the false trail at the silent waystation and found the real route to the Goblin Warren.',
     ],
-    carrying: ['One of the furry white eggs from Blind Fang’s lair'],
+    carrying: ["One of Blind Fang's eggs, not yet hatched"],
   },
 ];
 
