@@ -1,0 +1,20 @@
+---
+import Art from './Art.astro';
+import type { Entry } from '../data/world';
+interface Props { items: Entry[]; cols?: string; }
+const { items, cols = '19rem' } = Astro.props;
+---
+<div class="grid entries" style={`--min:${cols}`}>
+  {items.map((e) => (
+    <article class="card">
+      {e.art && <Art name={e.art} alt={e.name} sizes="(min-width: 72rem) 22rem, (min-width: 40rem) 45vw, 100vw" widths={[400, 800, 1200]} />}
+      <h3>{e.name}</h3>
+      {e.tag && <span class="tag">{e.tag}</span>}
+      {e.text.map((t) => <p>{t}</p>)}
+    </article>
+  ))}
+</div>
+<style>
+  .entries { grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--min)), 1fr)); align-items: start; }
+  .entries :global(img) { aspect-ratio: 4 / 3; object-fit: cover; object-position: center 25%; }
+</style>

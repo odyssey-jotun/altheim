@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Art from '../components/Art.astro';
+import { chapters } from '../data/chronicle';
+import { questions } from '../data/world';
+---
+<Base title="The Story So Far" description="Every chapter of the Altheim campaign, from the prologue to the return of the Silent Bell.">
+  <header class="section page-head">
+    <div class="narrow">
+      <span class="eyebrow">The Chronicle of Altheim</span>
+      <h1>The Story So Far</h1>
+      <nav class="toc" aria-label="Chapters">
+        <ol>
+          {chapters.map((c) => (
+            <li><a href={`#${c.slug}`}><span>{c.frontmatter.numeral}</span> {c.frontmatter.title}</a></li>
+          ))}
+          <li><a href="#where-it-stands"><span>Afterword</span> Where the Chronicle Stands</a></li>
+        </ol>
+      </nav>
+    </div>
+  </header>
+
+  {chapters.map((c) => (
+    <article class="chapter" id={c.slug}>
+      <div class="narrow">
+        <span class="eyebrow">{c.frontmatter.numeral}</span>
+        <h2>{c.frontmatter.title}</h2>
+        {c.frontmatter.image && (
+          <figure class="chapter-art">
+            <Art name={c.frontmatter.image} alt={c.frontmatter.alt ?? ''} sizes="(min-width: 44rem) 40rem, 100vw" />
+          </figure>
+        )}
+        <div class="flow prose dropcap"><c.Content /></div>
+      </div>
+    </article>
+  ))}
+
+  <article class="chapter" id="where-it-stands">
+    <div class="narrow">
+      <span class="eyebrow">Afterword</span>
+      <h2>Where the Chronicle Stands</h2>
+      <div class="flow prose">
+        <p>The company now stands at the beginning of a much larger story.</p>
+        <p>They have gone from local adventurers proving themselves to Silver-ranked agents of the Guild. They have defeated Blind Fang. They have survived the unintended tragedy at Fallen Timber. They have carried strange creatures out of White Elk Vale. They have uncovered and destroyed a goblin stronghold. They have freed captives and restored a Guild watchtower.</p>
+        <p>And they have allowed at least one enemy to escape who has every reason to remember them.</p>
+        <h3>Questions still unanswered</h3>
+        <ul>{questions.map((q) => <li>{q}</li>)}</ul>
+        <p>King Aldric still has no heir. The Four Houses remain united, for now. And high above the warm valleys of Altheim stand the mountains from which the frost giants once descended.</p>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .page-head { padding-bottom: 0; }
+  .toc { margin-top: 1.6rem !important; }
+  .toc ol { list-style: none; padding: 0; border-top: 1px solid var(--gold-soft); }
+  .toc li { border-bottom: 1px solid var(--gold-soft); }
+  .toc a { display: flex; gap: 1rem; padding: .55rem 0; color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--crimson); }
+  .toc span { flex: 0 0 6.5rem; font: 600 .8rem/1.9 var(--caps); letter-spacing: .1em; text-transform: uppercase; color: var(--crimson); }
+  .chapter { padding-top: var(--flow-section); scroll-margin-top: 1rem; }
+  .chapter-art { margin-top: 1.2rem !important; }
+  .chapter-art + .prose { margin-top: 1.6rem; }
+  h2 + .prose { margin-top: .9rem !important; }
+  .prose :global(blockquote) { margin-block: 1.4rem; }
+  .prose ul { padding-left: 1.2rem; }
+  .prose li + li { margin-top: .4em; }
+  .prose li::marker { color: var(--gold); }
+</style>

@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import Art from '../components/Art.astro';
+import { art } from '../data/art';
+
+const pieces: [string, string][] = [
+  ['party-vs-goblins', 'The company in the Goblin Warren'],
+  ['guild-hall', "The Altheim Adventurers' Guild"],
+  ['map-of-altheim', 'The Kingdom of Altheim'],
+  ['altheim-crest', 'The crest of Altheim'],
+  ['card-groggin', 'Jack of Blades'],
+  ['card-cocoa', 'Cocoa'],
+  ['card-seamus', 'Seamus'],
+  ['card-valith', 'Valith Oakhaven'],
+  ['card-wonnelly', 'Wonnelly Shadowleaf'],
+  ['card-dm', "The Guild's DM"],
+  ['portrait-groggin', 'Jack of Blades'],
+  ['portrait-seamus', 'Seamus'],
+  ['portrait-wonnelly', 'Wonnelly Shadowleaf'],
+  ['portrait-dm', 'The DM'],
+  ['blind-fang', 'Blind Fang'],
+  ['giant-bats', 'Giant Bats of White Elk Vale'],
+  ['wolves', 'The wolves of the Fallen Timber'],
+  ['goblin-warren', 'The Goblin Warren'],
+  ['goblin-chieftain', 'The goblin chieftain'],
+  ['blind-fang-mount', "Blind Fang's head, by Bimble & Sons"],
+  ['bimble', 'Bimble'],
+  ['prism-palace', 'The Prism Palace'],
+  ['guild-official', 'Reginald Goldhound'],
+  ['guild-token', 'The compass star of the Guild'],
+  ['frostlass-pastures', 'Frostlass Pastures'],
+  ['radiant-strike', ''],
+  ['warren-melee', ''],
+  ['silver-knight', ''],
+  ['grey-veteran', ''],
+  ['lady-in-red', ''],
+  ['grey-giant-laughing', ''],
+  ['innkeeper-and-goose', ''],
+  ['springs-witch', ''],
+  ['tiefling-archer', ''],
+  ['mountain-beast', ''],
+  ['lego-groggin', ''], ['lego-cocoa', ''], ['lego-seamus', ''], ['lego-valith', ''], ['lego-wonnelly', ''], ['lego-dm', ''],
+];
+---
+<Base title="Gallery" description="All the art from the Altheim campaign.">
+  <section class="section">
+    <div class="wrap">
+      <div class="narrow head">
+        <span class="eyebrow">From the table</span>
+        <h1>Gallery</h1>
+        <p class="lede">Every piece of art from the campaign so far. Tap any piece to open it full size.</p>
+      </div>
+      <div class="masonry">
+        {pieces.map(([name, cap]) => (
+          <figure>
+            <a href={art(name).src} target="_blank" rel="noopener">
+              <Art name={name} alt={cap || 'Art from the Altheim campaign'} sizes="(min-width: 72rem) 23rem, (min-width: 40rem) 46vw, 100vw" widths={[400, 800]} />
+            </a>
+            {cap && <figcaption>{cap}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .head { margin: 0 0 2rem; }
+  .masonry { columns: 3 18rem; column-gap: 1.2rem; }
+  .masonry figure { break-inside: avoid; margin-bottom: 1.4rem; }
+  .masonry :global(img) { border-radius: var(--radius); }
+</style>

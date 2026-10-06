@@ -1,0 +1,26 @@
+---
+import { Picture } from 'astro:assets';
+import { art } from '../data/art';
+
+interface Props {
+  name: string;
+  alt: string;
+  sizes?: string;
+  widths?: number[];
+  class?: string;
+  eager?: boolean;
+}
+const { name, alt, sizes = '(min-width: 72rem) 36rem, 100vw', widths = [480, 800, 1200, 1600], class: cls = 'art', eager = false } = Astro.props;
+const src = art(name);
+const usable = widths.filter((w) => w <= src.width);
+---
+<Picture
+  src={src}
+  alt={alt}
+  widths={usable.length ? usable : [src.width]}
+  sizes={sizes}
+  formats={['avif', 'webp']}
+  class={cls}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : undefined}
+/>

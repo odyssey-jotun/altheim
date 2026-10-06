@@ -1,0 +1,88 @@
+---
+import Base from '../../layouts/Base.astro';
+import Art from '../../components/Art.astro';
+import { company, type Hero } from '../../data/company';
+
+export function getStaticPaths() {
+  return company.map((h) => ({ params: { slug: h.slug }, props: { hero: h } }));
+}
+const { hero } = Astro.props as { hero: Hero };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const extras = [
+  ...(hero.portrait ? [{ art: hero.portrait, caption: `${hero.name}, portrait` }] : []),
+  { art: hero.lego, caption: `${hero.name}, minifigure edition` },
+  ...(hero.more ?? []),
+];
+const others = company.filter((h) => h.slug !== hero.slug);
+---
+<Base title={hero.name} description={`${hero.name}: ${hero.lineage}, ${hero.calling}. ${hero.summary}`}>
+  <section class="section" style={`--accent:${hero.accent}`}>
+    <div class="wrap sheet">
+      <figure class="card-art">
+        <Art name={hero.card} alt={`${hero.name}'s character card`} eager sizes="(min-width: 56rem) 26rem, 100vw" widths={[480, 800, 1200]} />
+      </figure>
+      <div class="flow">
+        <span class="eyebrow">The Company</span>
+        <h1>{hero.name}</h1>
+        {hero.also && <p class="also">{hero.also}</p>}
+        <dl class="facts">
+          <div><dt>Lineage</dt><dd>{hero.lineage}</dd></div>
+          <div><dt>Calling</dt><dd>{hero.calling}</dd></div>
+          <div><dt>Rank</dt><dd>Silver, Adventurers' Guild</dd></div>
+          {hero.carrying.length > 0 && <div><dt>Carrying</dt><dd>{hero.carrying.join('; ')}</dd></div>}
+        </dl>
+        <p class="lede">{hero.summary}</p>
+        <h2>In the chronicle</h2>
+        <ul class="deeds">{hero.deeds.map((d) => <li>{d}</li>)}</ul>
+        <p><a href={`${base}/chronicle/`}>Read the full story so far</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Art of {hero.name.split(' ')[0]}</h2>
+      <div class="extras">
+        {extras.map((e) => (
+          <figure>
+            <Art name={e.art} alt={e.caption} sizes="(min-width: 60rem) 22rem, (min-width: 40rem) 45vw, 100vw" widths={[400, 800, 1200]} />
+            <figcaption>{e.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>The rest of the company</h2>
+      <ul class="others">
+        {others.map((h) => <li><a href={`${base}/company/${h.slug}/`}>{h.name}</a></li>)}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sheet { display: grid; gap: 2.2rem; align-items: start; }
+  @media (min-width: 56rem) {
+    .sheet { grid-template-columns: 26rem 1fr; gap: 3.2rem; }
+    .card-art { position: sticky; top: 1.5rem; }
+  }
+  .card-art :global(img) { border-radius: 22px; box-shadow: 0 18px 40px -18px rgb(43 30 20 / .7); }
+  h1 { color: var(--accent); }
+  .also { font-style: italic; font-size: 1.25rem; color: var(--ink-soft); }
+  .facts { margin-inline: 0; margin-bottom: 0; border-top: 1px solid var(--gold-soft); }
+  .facts div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .5rem 0; border-bottom: 1px solid var(--gold-soft); }
+  .facts dt { font: 600 .8rem/1.9 var(--caps); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .facts dd { margin: 0; }
+  .deeds { padding-left: 1.2rem; }
+  .deeds li + li { margin-top: .45em; }
+  .deeds li::marker { color: var(--accent); }
+  .extras { margin-top: 1.2rem !important; display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); align-items: start; }
+  .extras :global(img) { border-radius: var(--radius); }
+  .others { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+  .others a { display: inline-block; padding: .45rem 1rem; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--gold); text-decoration: none; color: var(--ink); background: var(--vellum); }
+  .others a:hover { color: var(--crimson); }
+  h2 + .others { margin-top: 1rem !important; }
+</style>

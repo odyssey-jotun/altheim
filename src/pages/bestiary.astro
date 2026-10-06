@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Entries from '../components/Entries.astro';
+import { bestiary } from '../data/world';
+---
+<Base title="Bestiary" description="The monsters the company has faced in Altheim: Blind Fang, Giant Bats, wolves, goblins, and the frost giants of legend.">
+  <section class="section">
+    <div class="wrap">
+      <div class="narrow head">
+        <span class="eyebrow">The established bestiary of Altheim</span>
+        <h1>Bestiary</h1>
+        <p class="lede">What the company has fought, what got away, and what waits in the mountains.</p>
+      </div>
+      <Entries items={bestiary} />
+    </div>
+  </section>
+</Base>
+<style>
+  .head { margin: 0 0 2rem; }
+</style>

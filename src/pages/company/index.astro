@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import Art from '../../components/Art.astro';
+import { company } from '../../data/company';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="The Company" description="The five adventurers of the Silver-ranked company: Cocoa, Jack of Blades, Seamus, Valith Oakhaven, and Wonnelly Shadowleaf.">
+  <section class="section">
+    <div class="wrap">
+      <div class="narrow intro">
+        <span class="eyebrow">Silver Rank, Adventurers' Guild</span>
+        <h1>The Company</h1>
+        <p class="lede">The five have adventured together since their earliest days in the Guild, long enough to build the friendships, rivalries, habits, and trust expected of people who have survived danger together.</p>
+      </div>
+      <div class="roster">
+        {company.map((h) => (
+          <a class="card hero-card" href={`${base}/company/${h.slug}/`} style={`--accent:${h.accent}`}>
+            <Art name={h.card} alt={`${h.name}'s character card`} sizes="(min-width: 60rem) 18rem, (min-width: 40rem) 45vw, 100vw" widths={[400, 700, 1000]} />
+            <h2>{h.name}</h2>
+            <span class="tag">{h.lineage}, {h.calling}</span>
+            <p>{h.summary}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Off duty</span>
+      <h2>The company, in plastic</h2>
+      <div class="legos">
+        {company.map((h) => (
+          <figure>
+            <Art name={h.lego} alt={`${h.name} as a Lego minifigure`} sizes="(min-width: 60rem) 22rem, (min-width: 40rem) 45vw, 100vw" widths={[400, 800, 1200]} />
+            <figcaption>{h.name}</figcaption>
+          </figure>
+        ))}
+        <figure>
+          <Art name="lego-dm" alt="The Dungeon Master as a Lego minifigure holding a book" sizes="(min-width: 60rem) 22rem, (min-width: 40rem) 45vw, 100vw" widths={[400, 800, 1200]} />
+          <figcaption>The DM</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { margin-inline: 0; }
+  .roster { margin-top: 2.2rem; display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
+  .hero-card { border-top: 4px solid var(--accent); }
+  .hero-card h2 { font-size: 1.4rem; }
+  .hero-card h2 + .tag { margin-top: .15em !important; }
+  .legos { margin-top: 1.4rem !important; display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); }
+  .legos :global(img) { border-radius: var(--radius); }
+</style>
