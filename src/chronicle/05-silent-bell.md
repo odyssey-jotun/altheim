@@ -1,6 +1,6 @@
 ---
 order: 5
-numeral: "Chapter V"
+session: 2
 title: "The Silent Bell"
 ---
 The company set out to determine what had happened to the isolated Guild watchtower.

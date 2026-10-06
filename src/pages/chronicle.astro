@@ -2,70 +2,150 @@
 import Base from '../layouts/Base.astro';
 import Art from '../components/Art.astro';
 import { chapters } from '../data/chronicle';
+import { sessions } from '../data/sessions';
 import { questions } from '../data/world';
+
+const prologue = chapters.filter((c) => c.frontmatter.session === 0);
+const bySession = sessions.map((s) => ({ ...s, scenes: chapters.filter((c) => c.frontmatter.session === s.n) }));
 ---
-<Base title="The Story So Far" description="Every chapter of the Altheim campaign, from the prologue to the return of the Silent Bell.">
+<Base title="The Story So Far" description="The Altheim campaign session by session, from the prologue to the mines.">
   <header class="section page-head">
-    <div class="narrow">
+    <div class="wrap">
       <h1>The Story So Far</h1>
-      <nav class="toc" aria-label="Chapters">
-        <ol>
-          {chapters.map((c) => (
-            <li><a href={`#${c.slug}`}><span>{c.frontmatter.numeral}</span> {c.frontmatter.title}</a></li>
-          ))}
-          <li><a href="#where-it-stands"><span>Afterword</span> Where the Chronicle Stands</a></li>
-        </ol>
-      </nav>
+      <p class="lede">{['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'][sessions.length] ?? sessions.length} sessions in. Jump to any of them from the contents.</p>
     </div>
   </header>
 
-  {chapters.map((c) => (
-    <article class="chapter" id={c.slug}>
-      <div class="narrow">
-        {c.frontmatter.order > 0 && <p class="fleuron" aria-hidden="true">❦</p>}
-        <h2><span class="num">{c.frontmatter.numeral.replace('Chapter ', '')}.</span> {c.frontmatter.title}</h2>
-        {c.frontmatter.image && (
-          <figure class="chapter-art">
-            <Art name={c.frontmatter.image} alt={c.frontmatter.alt ?? ''} sizes="(min-width: 44rem) 40rem, 100vw" />
-          </figure>
-        )}
-        <div class="flow prose dropcap"><c.Content /></div>
-      </div>
-    </article>
-  ))}
+  <div class="wrap chron">
+    <nav class="toc" id="contents" aria-label="Contents">
+      <p class="toc-title">Contents</p>
+      <ol>
+        {prologue.map((c) => <li><a href={`#${c.slug}`}>Prologue</a></li>)}
+        {bySession.map((s) => (
+          <li>
+            <a class="toc-session" href={`#session-${s.n}`}>{s.name}</a>
+            <ol>{s.scenes.map((c) => <li><a href={`#${c.slug}`}>{c.frontmatter.title}</a></li>)}</ol>
+          </li>
+        ))}
+        <li><a href="#where-it-stands">Where the Chronicle Stands</a></li>
+      </ol>
+    </nav>
 
-  <article class="chapter" id="where-it-stands">
-    <div class="narrow">
-      <p class="fleuron" aria-hidden="true">❦</p>
-      <h2>Where the Chronicle Stands</h2>
-      <div class="flow prose">
-        <p>The company now stands at the beginning of a much larger story.</p>
-        <p>They have gone from local adventurers proving themselves to Silver-ranked agents of the Guild. They have defeated Blind Fang. They have survived the unintended tragedy at Fallen Timber. They have carried strange creatures out of White Elk Vale. They have uncovered and destroyed a goblin stronghold. They have freed captives and restored a Guild watchtower.</p>
-        <p>And they have allowed at least one enemy to escape who has every reason to remember them.</p>
-        <h3>Questions still unanswered</h3>
-        <ul>{questions.map((q) => <li>{q}</li>)}</ul>
-        <p>King Aldric still has no heir. The Four Houses remain united, for now. And high above the warm valleys of Altheim stand the mountains from which the frost giants once descended.</p>
-      </div>
+    <div class="chron-body">
+      {prologue.map((c) => (
+        <article class="scene" id={c.slug}>
+          <h2 class="part">Prologue</h2>
+          <p class="part-sub">{c.frontmatter.title}</p>
+          {c.frontmatter.image && (
+            <figure class="scene-art"><Art name={c.frontmatter.image} alt={c.frontmatter.alt ?? ''} sizes="(min-width: 64rem) 40rem, 100vw" /></figure>
+          )}
+          <div class="flow prose dropcap"><c.Content /></div>
+        </article>
+      ))}
+
+      {bySession.map((s) => (
+        <section class="session" id={`session-${s.n}`} aria-labelledby={`session-${s.n}-h`}>
+          <p class="fleuron" aria-hidden="true">❦</p>
+          <h2 class="part" id={`session-${s.n}-h`}>{s.name}</h2>
+          <p class="part-sub">{s.summary}</p>
+          {s.scenes.map((c) => (
+            <article class="scene" id={c.slug}>
+              <h3>{c.frontmatter.title}</h3>
+              {c.frontmatter.image && (
+                <figure class="scene-art"><Art name={c.frontmatter.image} alt={c.frontmatter.alt ?? ''} sizes="(min-width: 64rem) 40rem, 100vw" /></figure>
+              )}
+              <div class="flow prose dropcap"><c.Content /></div>
+            </article>
+          ))}
+        </section>
+      ))}
+
+      <section class="session" id="where-it-stands">
+        <p class="fleuron" aria-hidden="true">❦</p>
+        <h2 class="part">Where the Chronicle Stands</h2>
+        <div class="flow prose">
+          <p>The company now stands at the beginning of a much larger story.</p>
+          <p>They have gone from local adventurers proving themselves to Silver-ranked agents of the Guild. They have defeated Blind Fang. They have survived the unintended tragedy at Fallen Timber. They have carried strange creatures out of White Elk Vale. They have uncovered and destroyed a goblin stronghold. They have freed captives and restored a Guild watchtower.</p>
+          <p>And they have allowed at least one enemy to escape who has every reason to remember them.</p>
+          <h3>Questions still unanswered</h3>
+          <ul>{questions.map((q) => <li>{q}</li>)}</ul>
+          <p>King Aldric still has no heir. The Four Houses remain united, for now. And high above the warm valleys of Altheim stand the mountains from which the frost giants once descended.</p>
+        </div>
+      </section>
     </div>
-  </article>
+  </div>
+
+  <a class="to-contents" href="#contents">Contents</a>
+
+  <script>
+    const links = new Map<string, HTMLAnchorElement>();
+    document.querySelectorAll<HTMLAnchorElement>('.toc a').forEach((a) => links.set(a.hash.slice(1), a));
+    const targets = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const mark = () => {
+      const y = window.scrollY + window.innerHeight * 0.3;
+      let current: HTMLElement | undefined;
+      for (const t of targets) if (t.getBoundingClientRect().top + window.scrollY <= y) current = t;
+      links.forEach((a) => a.removeAttribute('aria-current'));
+      if (current) {
+        links.get(current.id)?.setAttribute('aria-current', 'true');
+        const session = current.closest('.session');
+        if (session && session.id !== current.id) links.get(session.id)?.setAttribute('aria-current', 'true');
+      }
+      const toc = document.getElementById('contents')!;
+      document.querySelector('.to-contents')?.classList.toggle('show', toc.getBoundingClientRect().bottom < 0);
+    };
+    let ticking = false;
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { mark(); ticking = false; }); } }, { passive: true });
+    mark();
+  </script>
 </Base>
 
 <style>
-  .page-head { padding-bottom: 0; }
-  .toc { margin-top: 1.6rem !important; }
-  .toc ol { list-style: none; padding: 0; border-top: 1px solid var(--gold-soft); }
-  .toc li { border-bottom: 1px solid var(--gold-soft); }
-  .toc a { display: flex; gap: 1rem; padding: .55rem 0; color: var(--ink); text-decoration: none; }
+  .page-head { padding-bottom: 2rem; }
+  .chron { display: grid; gap: 2.5rem; }
+  .chron-body { min-width: 0; max-width: var(--measure); }
+  @media (min-width: 64rem) {
+    .chron { grid-template-columns: 15rem minmax(0, 1fr); gap: 4rem; }
+    .toc { position: sticky; top: 1.5rem; align-self: start; max-height: calc(100vh - 3rem); overflow: auto; }
+  }
+
+  .toc { background: var(--vellum); border: 1px solid var(--gold-soft); border-radius: var(--radius); padding: 1.1rem 1.25rem; font-size: 1.02rem; }
+  .toc-title { font: 600 1.05rem var(--caps); letter-spacing: .06em; color: var(--crimson); }
+  .toc ol { list-style: none; padding: 0; margin: 0; }
+  .toc-title + ol { margin-top: .5rem; }
+  .toc li { margin-top: .15rem; }
+  .toc ol ol { margin: .1rem 0 .5rem .8rem; border-left: 1px solid var(--gold-soft); padding-left: .7rem; }
+  .toc a { color: var(--ink); text-decoration: none; display: block; padding: .12rem 0; line-height: 1.35; }
   .toc a:hover { color: var(--crimson); }
-  .toc span { flex: 0 0 6.5rem; font: 600 .8rem/1.9 var(--caps); letter-spacing: .1em; text-transform: uppercase; color: var(--crimson); }
-  .chapter { padding-top: var(--flow-section); scroll-margin-top: 1rem; }
-  .fleuron { text-align: center; color: var(--gold); font-size: 2.1rem; line-height: 1; margin-bottom: 2.4rem; }
-  .num { font: 400 1.15em/1 var(--display); color: var(--crimson); letter-spacing: 0; text-transform: none; }
-  .chapter-art { margin-top: 1.2rem !important; }
-  .chapter-art + .prose { margin-top: 1.6rem; }
-  h2 + .prose { margin-top: .9rem !important; }
+  .toc-session { font-weight: 600; }
+  .toc a[aria-current] { color: var(--crimson); }
+  .toc ol ol a[aria-current] { font-style: italic; }
+
+  .part { font: 400 clamp(2.2rem, 5vw, 3rem)/1.05 var(--display); color: var(--crimson); letter-spacing: 0; }
+  .part-sub { font-style: italic; font-size: 1.25rem; color: var(--ink-soft); }
+  .session { padding-top: var(--flow-section); scroll-margin-top: 1rem; }
+  .scene { scroll-margin-top: 1rem; }
+  .part-sub + .scene { margin-top: 2.2rem; }
+  .scene + .scene { margin-top: 3.2rem; }
+  .scene h3 { font-size: 1.45rem; }
+  .fleuron { text-align: center; color: var(--gold); font-size: 2.1rem; line-height: 1; margin-bottom: 2rem; }
+  .scene-art { margin-top: 1rem !important; }
+  .scene-art + .prose { margin-top: 1.5rem; }
+  :is(h2, h3, .part-sub) + .prose { margin-top: 1rem !important; }
+  .part-sub + .scene-art, .part-sub + .prose { margin-top: 1.4rem !important; }
   .prose :global(blockquote) { margin-block: 1.4rem; }
   .prose ul { padding-left: 1.2rem; }
   .prose li + li { margin-top: .4em; }
   .prose li::marker { color: var(--gold); }
+
+  .to-contents {
+    position: fixed; right: 16px; bottom: 16px; z-index: 5;
+    padding: .55rem 1rem; border-radius: 999px; background: var(--night); color: var(--gold-soft);
+    font: 600 .8rem/1 var(--caps); letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+    box-shadow: 0 8px 20px -8px rgb(0 0 0 / .5);
+    opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .2s, transform .2s;
+  }
+  .to-contents:global(.show) { opacity: 1; transform: none; pointer-events: auto; }
+  @media (min-width: 64rem) { .to-contents { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .to-contents { transition: none; } }
 </style>

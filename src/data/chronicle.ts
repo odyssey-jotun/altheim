@@ -1,7 +1,7 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 
 interface Chapter {
-  frontmatter: { order: number; numeral: string; title: string; image?: string; alt?: string };
+  frontmatter: { order: number; session: number; title: string; image?: string; alt?: string };
   Content: AstroComponentFactory;
   slug: string;
 }

@@ -1,6 +1,6 @@
 ---
 order: 2
-numeral: "Chapter II"
+session: 1
 title: "Ashmere and the Greybough"
 ---
 Continuing toward Caldmere, the company stopped at the settlement of Ashmere.

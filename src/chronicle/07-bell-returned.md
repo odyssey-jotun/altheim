@@ -1,6 +1,6 @@
 ---
 order: 7
-numeral: "Chapter VII"
+session: 3
 title: "The Bell Returned"
 ---
 The adventurers recovered the stolen Guild bell and hauled it back to the abandoned watchtower.

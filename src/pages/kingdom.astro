@@ -5,6 +5,7 @@ import Entries from '../components/Entries.astro';
 import { houses } from '../data/world';
 import { art } from '../data/art';
 import Insignia from '../components/Insignia.astro';
+import LuminousTopography from '../components/react/LuminousTopography';
 const map = art('map-of-altheim');
 const places = [
   { name: 'Caldmere', kind: 'castle', field: '#24407a', text: 'The capital, built in rings around the warm waters of the Everspring. Merchants and common districts on the outside, then prosperous neighborhoods, artisans, and noble estates, with the seat of government at the center.' },
@@ -16,6 +17,7 @@ const places = [
 ] as const;
 ---
 <Base title="The Kingdom" description="Altheim: the kingdom beneath the mountains, its Four Houses, its capital Caldmere, and the map.">
+  <LuminousTopography className="topo" accent="#a87d2c" intensity={1.15} density={0.9} lineWidth={1.2} focalPoint={{ x: 0.8, y: 0.45 }} safeArea={{ x: 0.02, y: 0.08, w: 0.62, h: 0.84 }}>
   <section class="section">
     <div class="wrap intro">
       <div class="flow">
@@ -29,6 +31,7 @@ const places = [
       </figure>
     </div>
   </section>
+  </LuminousTopography>
 
   <section class="section">
     <div class="wrap">
@@ -59,6 +62,7 @@ const places = [
 </Base>
 
 <style>
+  :global(.topo) { border-bottom: 1px solid var(--gold-soft); }
   .intro { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 60rem) { .intro { grid-template-columns: 1fr 20rem; gap: 4rem; } }
   .crest { max-width: 20rem; margin-inline: auto; }

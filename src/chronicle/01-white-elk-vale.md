@@ -1,6 +1,6 @@
 ---
 order: 1
-numeral: "Chapter I"
+session: 1
 title: "The White Elk Vale"
 image: blind-fang
 alt: "Blind Fang, an enormous bat with a thick grey ruff, diving through a cave"

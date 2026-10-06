@@ -1,6 +1,6 @@
 ---
 order: 6
-numeral: "Chapter VI"
+session: 3
 title: "The Goblin Warren"
 image: party-vs-goblins
 alt: "The five adventurers fighting goblins in a ruined hall"

@@ -1,6 +1,6 @@
 ---
 order: 3
-numeral: "Chapter III"
+session: 1
 title: "The Fallen Timber"
 image: wolves
 alt: "A black dire wolf on a rock above a pack of grey wolves"

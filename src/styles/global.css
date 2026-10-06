@@ -144,3 +144,9 @@ a.card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -16px rgb(43
 .skip { position: absolute; left: -999px; top: 0; background: var(--vellum); padding: .5rem 1rem; z-index: 10; }
 .skip:focus { left: 1rem; }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* Luminous Topography (21st.dev / Motiq) wrapper classes, standing in for its Tailwind utilities */
+.lt-root { position: relative; isolation: isolate; overflow: hidden; }
+.lt-bg { pointer-events: none; position: absolute; inset: 0; overflow: hidden; }
+.lt-fg { position: relative; z-index: 10; }
+:root { --motiq-accent: #a87d2c; --motiq-fg: #5b4634; }

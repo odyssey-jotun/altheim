@@ -9,7 +9,7 @@ for (const w of [390, 1440]) {
       const out = [];
       const vis = (el) => { const r = el.getBoundingClientRect(); return r.height > 0; };
       // previous/next visible element in document flow (skip eyebrows as attached labels)
-      const all = [...document.querySelectorAll('main *')].filter(e => vis(e) && (e.children.length === 0 || e.tagName === 'P' || e.tagName === 'LI'));
+      const all = [...document.querySelectorAll('main *')].filter(e => vis(e) && !e.closest('[aria-hidden="true"]') && (e.children.length === 0 || e.tagName === 'P' || e.tagName === 'LI'));
       for (const h of document.querySelectorAll('main h1, main h2, main h3')) {
         const r = h.getBoundingClientRect();
         let top = r.top;

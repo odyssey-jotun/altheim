@@ -1,6 +1,6 @@
 ---
 order: 0
-numeral: "Prologue"
+session: 0
 title: "The Kingdom Beneath the Mountains"
 image: map-of-altheim
 alt: "Map of the Kingdom of Altheim, with Caldmere at its centre and the mountains all around"

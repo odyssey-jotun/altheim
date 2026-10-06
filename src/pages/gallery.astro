@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Art from '../components/Art.astro';
 import { art } from '../data/art';
+import { getImage } from 'astro:assets';
 
 const pieces: [string, string][] = [
   ['party-vs-goblins', 'The company in the Goblin Warren'],
@@ -41,30 +42,150 @@ const pieces: [string, string][] = [
   ['mountain-beast', ''],
   ['lego-groggin', ''], ['lego-cocoa', ''], ['lego-seamus', ''], ['lego-valith', ''], ['lego-wonnelly', ''], ['lego-dm', ''],
 ];
+const views = await Promise.all(pieces.map(async ([name, cap]) => {
+  const src = art(name);
+  const full = await getImage({ src, width: Math.min(1600, src.width), format: 'webp' });
+  const thumb = await getImage({ src, width: 240, format: 'webp' });
+  return { name, cap, full: full.src, thumb: thumb.src };
+}));
 ---
 <Base title="Gallery" description="All the art from the Altheim campaign.">
   <section class="section">
     <div class="wrap">
       <div class="narrow head">
         <h1>Gallery</h1>
-        <p class="lede">Every piece of art from the campaign so far. Tap any piece to open it full size.</p>
+        <p class="lede">Every piece of art from the campaign so far. Tap any piece to open the viewer, then swipe through the rest.</p>
       </div>
       <div class="masonry">
-        {pieces.map(([name, cap]) => (
+        {pieces.map(([name, cap], i) => (
           <figure>
-            <a href={art(name).src} target="_blank" rel="noopener">
+            <button class="open" type="button" data-i={i} aria-label={`View ${cap || 'this piece'} larger`}>
               <Art name={name} alt={cap || 'Art from the Altheim campaign'} sizes="(min-width: 72rem) 23rem, (min-width: 40rem) 46vw, 100vw" widths={[400, 800]} />
-            </a>
+            </button>
             {cap && <figcaption>{cap}</figcaption>}
           </figure>
         ))}
       </div>
     </div>
   </section>
+  <dialog class="viewer" aria-label="Gallery viewer">
+    <div class="v-stage">
+      <div class="v-track">
+        {views.map((v) => (
+          <div class="v-slide"><img data-src={v.full} alt={v.cap || 'Art from the Altheim campaign'} draggable="false" /></div>
+        ))}
+      </div>
+      <button class="v-nav v-prev" type="button" aria-label="Previous">‹</button>
+      <button class="v-nav v-next" type="button" aria-label="Next">›</button>
+      <button class="v-close" type="button" aria-label="Close">×</button>
+    </div>
+    <p class="v-cap"></p>
+    <div class="v-strip">
+      <div class="v-thumbs">
+        {views.map((v, i) => (
+          <button type="button" class="v-thumb" data-i={i} aria-label={`Show ${v.cap || 'piece ' + (i + 1)}`}><img src={v.thumb} alt="" loading="lazy" /></button>
+        ))}
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // Ported from 21st.dev's Framer Thumbnail Carousel: swipe with a springy settle,
+    // a fast flick or a drag past 30% changes piece, and the current sliver widens.
+    const dlg = document.querySelector<HTMLDialogElement>('.viewer')!;
+    const track = dlg.querySelector<HTMLElement>('.v-track')!;
+    const stage = dlg.querySelector<HTMLElement>('.v-stage')!;
+    const slides = [...dlg.querySelectorAll<HTMLImageElement>('.v-slide img')];
+    const thumbs = [...dlg.querySelectorAll<HTMLButtonElement>('.v-thumb')];
+    const strip = dlg.querySelector<HTMLElement>('.v-strip')!;
+    const cap = dlg.querySelector<HTMLElement>('.v-cap')!;
+    const prev = dlg.querySelector<HTMLButtonElement>('.v-prev')!;
+    const next = dlg.querySelector<HTMLButtonElement>('.v-next')!;
+    let index = 0;
+
+    const load = (i: number) => { const img = slides[i]; if (img && !img.src) img.src = img.dataset.src!; };
+    const go = (i: number, instant = false) => {
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      [index - 1, index, index + 1].forEach(load);
+      track.classList.toggle('instant', instant);
+      track.style.transform = `translateX(${-index * 100}%)`;
+      thumbs.forEach((t, k) => t.classList.toggle('on', k === index));
+      cap.textContent = slides[index].alt === 'Art from the Altheim campaign' ? '' : slides[index].alt;
+      prev.disabled = index === 0; next.disabled = index === slides.length - 1;
+      const t = thumbs[index];
+      if (instant) t.style.transition = 'none'; requestAnimationFrame(() => (t.style.transition = ''));
+      const centre = () => strip.scrollTo({ left: t.offsetLeft - strip.offsetLeft - strip.clientWidth / 2 + t.offsetWidth / 2, behavior: instant ? 'auto' : 'smooth' });
+      centre(); setTimeout(centre, 320);
+    };
+
+    document.querySelectorAll<HTMLButtonElement>('.open').forEach((b) =>
+      b.addEventListener('click', () => { dlg.showModal(); go(+b.dataset.i!, true); }));
+    thumbs.forEach((t) => t.addEventListener('click', () => go(+t.dataset.i!)));
+    prev.addEventListener('click', () => go(index - 1));
+    next.addEventListener('click', () => go(index + 1));
+    dlg.querySelector('.v-close')!.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') go(index - 1);
+      if (e.key === 'ArrowRight') go(index + 1);
+    });
+
+    // drag / swipe
+    let startX = 0, lastX = 0, lastT = 0, vel = 0, dragging = false;
+    stage.addEventListener('pointerdown', (e) => {
+      if ((e.target as HTMLElement).closest('button')) return;
+      dragging = true; startX = lastX = e.clientX; lastT = performance.now(); vel = 0;
+      track.classList.add('instant'); stage.setPointerCapture(e.pointerId);
+    });
+    stage.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const now = performance.now();
+      vel = (e.clientX - lastX) / Math.max(1, now - lastT) * 1000; lastX = e.clientX; lastT = now;
+      let dx = e.clientX - startX;
+      if ((index === 0 && dx > 0) || (index === slides.length - 1 && dx < 0)) dx *= 0.2;
+      track.style.transform = `translateX(calc(${-index * 100}% + ${dx}px))`;
+    });
+    const end = (e: PointerEvent) => {
+      if (!dragging) return; dragging = false;
+      const dx = e.clientX - startX, w = stage.offsetWidth;
+      let i = index;
+      if (Math.abs(vel) > 500) i = vel > 0 ? index - 1 : index + 1;
+      else if (Math.abs(dx) > w * 0.3) i = dx > 0 ? index - 1 : index + 1;
+      go(i);
+    };
+    stage.addEventListener('pointerup', end);
+    stage.addEventListener('pointercancel', end);
+  </script>
 </Base>
 <style>
   .head { margin: 0 0 2rem; }
   .masonry { columns: 3 18rem; column-gap: 1.2rem; }
   .masonry figure { break-inside: avoid; margin-bottom: 1.4rem; }
-  .masonry :global(img) { border-radius: var(--radius); }
+  .masonry :global(img) { border-radius: var(--radius); transition: transform .25s ease, box-shadow .25s ease; }
+  .open { all: unset; display: block; cursor: zoom-in; border-radius: var(--radius); }
+  .open:hover :global(img) { transform: translateY(-3px); box-shadow: 0 14px 28px -14px rgb(43 30 20 / .6); }
+  .open:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  .viewer { width: min(100vw, 64rem); max-width: 100vw; max-height: 100dvh; padding: 16px; border: 0; background: transparent; color: var(--vellum); overflow: hidden; }
+  .viewer::backdrop { background: rgb(20 15 10 / .97); }
+  .v-stage { position: relative; overflow: hidden; border-radius: 22px; touch-action: pan-y; cursor: grab; }
+  .v-track { display: flex; transition: transform .5s cubic-bezier(.2, 1.15, .35, 1); }
+  .v-track.instant { transition: none; }
+  .v-slide { flex: 0 0 100%; height: min(72dvh, 46rem); display: grid; place-items: center; }
+  .v-slide img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 18px; user-select: none; pointer-events: none; }
+  .v-nav, .v-close { position: absolute; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 0; background: var(--vellum); color: var(--ink); font: 400 1.8rem/1 var(--body); display: grid; place-items: center; cursor: pointer; box-shadow: 0 6px 16px -6px rgb(0 0 0 / .6); opacity: .85; transition: transform .15s, opacity .15s; }
+  .v-nav:hover:not(:disabled), .v-close:hover { opacity: 1; transform: scale(1.08); }
+  .v-nav { top: 50%; translate: 0 -50%; }
+  .v-prev { left: 12px; } .v-next { right: 12px; }
+  .v-nav:disabled { opacity: .3; cursor: default; }
+  .v-close { top: 12px; right: 12px; font-size: 1.6rem; }
+  .v-cap { min-height: 1.5em; margin-top: .7rem; text-align: center; font-style: italic; color: var(--gold-soft); }
+  .v-strip { margin-top: .6rem; overflow-x: auto; scrollbar-width: none; }
+  .v-strip::-webkit-scrollbar { display: none; }
+  .v-thumbs { display: flex; gap: 3px; height: 4.5rem; width: max-content; padding-inline: 50%; }
+  .v-thumb { all: unset; flex: 0 0 auto; width: 35px; height: 100%; overflow: hidden; border-radius: 6px; cursor: pointer; opacity: .55; transition: width .3s ease-out, opacity .3s, margin .3s; }
+  .v-thumb.on { width: 120px; opacity: 1; margin-inline: 2px; }
+  .v-thumb img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+  .v-thumb:focus-visible { outline: 2px solid var(--gold); }
+  @media (prefers-reduced-motion: reduce) { .v-track, .v-thumb { transition: none; } }
 </style>

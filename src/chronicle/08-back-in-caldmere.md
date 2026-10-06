@@ -1,6 +1,6 @@
 ---
 order: 8
-numeral: "Chapter VIII"
+session: 3
 title: "Back in Caldmere"
 image: blind-fang-mount
 alt: "Blind Fang's preserved head mounted on a plaque above a fireplace"

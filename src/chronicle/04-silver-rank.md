@@ -1,6 +1,6 @@
 ---
 order: 4
-numeral: "Chapter IV"
+session: 1
 title: "Silver Rank"
 image: guild-hall
 alt: "The company gathered around a table in the hall of the Altheim Adventurers Guild"
