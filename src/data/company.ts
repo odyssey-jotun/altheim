@@ -16,6 +16,25 @@ export interface Hero {
 
 export const company: Hero[] = [
   {
+    slug: 'cocoa',
+    name: 'Cocoa',
+    lineage: 'Dhampir (elf, half vampyr)',
+    calling: 'Paladin',
+    accent: '#7d1d24',
+    card: 'card-cocoa',
+    lego: 'lego-cocoa',
+    summary:
+      'A dark-haired paladin in white and silver plate, part elf and part vampyr. Cocoa holds the line with a longsword and a heavy white cloak.',
+    deeds: [
+      'Fought the Giant Bats and Blind Fang in White Elk Vale.',
+      "Took one of the three white eggs from Blind Fang's cave, and still keeps it.",
+      'Fought the wolves at the Fallen Timber.',
+      'Earned Silver Rank with the company.',
+      'Pursued the fleeing goblin chieftain out of the warren with Seamus.',
+    ],
+    carrying: ['One of the furry white eggs from Blind Fang’s lair'],
+  },
+  {
     slug: 'jack-of-blades',
     name: 'Jack of Blades',
     also: 'Groggin Halas, sometimes called Groggin',
@@ -37,25 +56,6 @@ export const company: Hero[] = [
     ],
     carrying: ["Blind Fang's preserved, mounted head"],
     more: [{ art: 'blind-fang-mount', caption: "Blind Fang's head, mounted by Bimble & Sons" }],
-  },
-  {
-    slug: 'cocoa',
-    name: 'Cocoa',
-    lineage: 'Dhampir (elf, half vampyr)',
-    calling: 'Paladin',
-    accent: '#7d1d24',
-    card: 'card-cocoa',
-    lego: 'lego-cocoa',
-    summary:
-      'A dark-haired paladin in white and silver plate, part elf and part vampyr. Cocoa holds the line with a longsword and a heavy white cloak.',
-    deeds: [
-      'Fought the Giant Bats and Blind Fang in White Elk Vale.',
-      "Took one of the three white eggs from Blind Fang's cave, and still keeps it.",
-      'Fought the wolves at the Fallen Timber.',
-      'Earned Silver Rank with the company.',
-      'Pursued the fleeing goblin chieftain out of the warren with Seamus.',
-    ],
-    carrying: ['One of the furry white eggs from Blind Fang’s lair'],
   },
   {
     slug: 'seamus',
@@ -117,3 +117,6 @@ export const company: Hero[] = [
     carrying: ['One of the furry white eggs from Blind Fang’s lair'],
   },
 ];
+
+/** Marc's line, shown wherever the company is listed. */
+export const orderNote = 'Names are in alphabetical order, which is why the women come last, not because Marc is a sexist pig.';

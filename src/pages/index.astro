@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Art from '../components/Art.astro';
-import { company } from '../data/company';
+import { company, orderNote } from '../data/company';
 import { chapters } from '../data/chronicle';
 import { questions } from '../data/world';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -11,7 +11,6 @@ const latest = chapters[chapters.length - 1];
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-text">
-        <span class="eyebrow">A campaign of the Adventurers' Guild</span>
         <h1>The Chronicle of Altheim</h1>
         <p class="lede">Five adventurers, newly raised to Silver Rank, in a kingdom held together by an old alliance, an aging king with no heir, and a warning carved beside a giant's axe.</p>
         <div class="btns">
@@ -27,8 +26,8 @@ const latest = chapters[chapters.length - 1];
 
   <section class="section">
     <div class="wrap">
-      <span class="eyebrow">The company</span>
       <h2>Silver Rank, one assignment in</h2>
+      <p class="order-note">{orderNote}</p>
       <div class="grid party">
         {company.map((h) => (
           <a class="card" href={`${base}/company/${h.slug}/`}>
@@ -47,9 +46,8 @@ const latest = chapters[chapters.length - 1];
         <Art name={latest.frontmatter.image ?? 'guild-hall'} alt={latest.frontmatter.alt ?? ''} sizes="(min-width: 60rem) 30rem, 100vw" />
       </figure>
       <div class="flow">
-        <span class="eyebrow">Latest · {latest.frontmatter.numeral}</span>
         <h2>{latest.frontmatter.title}</h2>
-        <p>The Silent Bell rings again. The goblin warren is broken, its prisoners are home, Jack has a bat's head for the wall and Seamus has a cape made of its wings. The Guild paid 600 gold for the company's first Silver assignment.</p>
+        <p>Most recently, the Silent Bell rings again. The goblin warren is broken, its prisoners are home, Jack has a bat's head for the wall and Seamus has a cape made of its wings. The Guild paid 600 gold for the company's first Silver assignment.</p>
         <p><a href={`${base}/chronicle/#${latest.slug}`}>Read the chapter</a></p>
       </div>
     </div>
@@ -58,7 +56,6 @@ const latest = chapters[chapters.length - 1];
   <section class="section">
     <div class="wrap threads">
       <div class="flow">
-        <span class="eyebrow">Unfinished business</span>
         <h2>Questions still open</h2>
         <ul class="qlist">
           {questions.map((q) => <li>{q}</li>)}
@@ -80,6 +77,7 @@ const latest = chapters[chapters.length - 1];
   .hero-art :global(img) { border-radius: 28px; box-shadow: 0 18px 40px -18px rgb(43 30 20 / .7); }
   @media (min-width: 60rem) { .hero-grid { grid-template-columns: 1fr 1.15fr; gap: 3rem; } }
 
+  .order-note { font-style: italic; color: var(--ink-soft); }
   .party { margin-top: 1.4rem !important; grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr)); }
   .party .card { padding: .9rem; padding-bottom: 1rem; }
   .party .card > :global(picture) { margin: -.9rem -.9rem .8rem; }

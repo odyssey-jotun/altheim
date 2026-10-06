@@ -53,15 +53,7 @@ p, ul, ol, blockquote, figure { margin: 0; }
 .flow > * + * { margin-top: var(--flow-text); }
 .flow > :is(h2, h3) { margin-top: var(--flow-block); }
 .flow > :is(h2, h3):first-child { margin-top: 0; }
-:is(h1, h2, h3, .eyebrow) + * { margin-top: var(--flow-tight) !important; }
-.eyebrow {
-  display: block;
-  font: 600 .82rem/1.2 var(--caps);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--crimson);
-}
-.eyebrow + :is(h1, h2, h3) { margin-top: .2em !important; }
+:is(h1, h2, h3) + * { margin-top: var(--flow-tight) !important; }
 
 .wrap { width: min(100% - 2 * var(--gutter), 72rem); margin-inline: auto; }
 .narrow { width: min(100% - 2 * var(--gutter), var(--measure)); margin-inline: auto; }

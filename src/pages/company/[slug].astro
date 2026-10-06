@@ -22,7 +22,6 @@ const others = company.filter((h) => h.slug !== hero.slug);
         <Art name={hero.card} alt={`${hero.name}'s character card`} eager sizes="(min-width: 56rem) 26rem, 100vw" widths={[480, 800, 1200]} />
       </figure>
       <div class="flow">
-        <span class="eyebrow">The Company</span>
         <h1>{hero.name}</h1>
         {hero.also && <p class="also">{hero.also}</p>}
         <dl class="facts">

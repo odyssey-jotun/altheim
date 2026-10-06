@@ -4,21 +4,21 @@ import Art from '../components/Art.astro';
 import Entries from '../components/Entries.astro';
 import { houses } from '../data/world';
 import { art } from '../data/art';
+import Insignia from '../components/Insignia.astro';
 const map = art('map-of-altheim');
 const places = [
-  ['Caldmere', 'The capital, built in rings around the warm waters of the Everspring. Merchants and common districts on the outside, then prosperous neighborhoods, artisans, and noble estates, with the seat of government at the center.'],
-  ['White Elk Vale', "East of Ashmere. Home of the Giant Bat colony and Blind Fang's lair."],
-  ['Ashmere', 'A settlement near the Greybough, where druids are investigating a corruption in the land.'],
-  ['The Greybough', 'Forest and timber country south of Caldmere. Something is wrong with the land here.'],
-  ['Coldiron Mine', 'In the eastern mountains past Keldrun. The Guild has a contract open on it.'],
-  ['Hrothgar’s Axe', 'High in the north beyond the Giant’s Steppe, the monument left from the Giant War.'],
-];
+  { name: 'Caldmere', kind: 'castle', field: '#24407a', text: 'The capital, built in rings around the warm waters of the Everspring. Merchants and common districts on the outside, then prosperous neighborhoods, artisans, and noble estates, with the seat of government at the center.' },
+  { name: 'White Elk Vale', kind: 'elk', field: '#24503a', text: "East of Ashmere. Home of the Giant Bat colony and Blind Fang's lair." },
+  { name: 'Ashmere', kind: 'flame', field: '#7d1d24', text: 'A settlement near the Greybough, where druids are investigating a corruption in the land.' },
+  { name: 'The Greybough', kind: 'bough', field: '#4d5747', text: 'Forest and timber country south of Caldmere. Something is wrong with the land here.' },
+  { name: 'Coldiron Mine', kind: 'mine', field: '#33343a', text: 'In the eastern mountains past Keldrun. The Guild has a contract open on it.' },
+  { name: "Hrothgar's Axe", kind: 'axe', field: '#2b1e14', text: "High in the north beyond the Giant's Steppe, the monument left from the Giant War." },
+] as const;
 ---
 <Base title="The Kingdom" description="Altheim: the kingdom beneath the mountains, its Four Houses, its capital Caldmere, and the map.">
   <section class="section">
     <div class="wrap intro">
       <div class="flow">
-        <span class="eyebrow">The Kingdom Beneath the Mountains</span>
         <h1>Altheim</h1>
         <p class="lede">A temperate kingdom of deep coniferous forests, rivers, mist-shrouded valleys, and geothermal springs, far beneath the peaks of the Spine of the World.</p>
         <p>Generations ago the frost giants of High King Hrothgar invaded. The peoples of the valley survived only by setting aside their divisions and standing together, and the giants were driven back into the mountains. The Giant King's great axe remains as a monument, along with his warning: the giants would return when the people of Altheim forgot the unity that had defeated them.</p>
@@ -32,16 +32,14 @@ const places = [
 
   <section class="section">
     <div class="wrap">
-      <span class="eyebrow">No Crown Stands Alone</span>
       <h2>The Four Houses</h2>
-      <p class="sub">The unity forged in the Giant War became the government of Altheim. Beneath the Crown stand four great Houses, each one a pillar believed necessary to preserve the kingdom.</p>
+      <p class="sub">Their guiding principle: <em>No Crown Stands Alone.</em> The unity forged in the Giant War became the government of Altheim. Beneath the Crown stand four great Houses, each one a pillar believed necessary to preserve the kingdom.</p>
       <Entries items={houses} cols="14rem" />
     </div>
   </section>
 
   <section class="section" id="map">
     <div class="wrap">
-      <span class="eyebrow">Cartography</span>
       <h2>The Map of Altheim</h2>
       <a class="map" href={map.src} target="_blank" rel="noopener">
         <Art name="map-of-altheim" alt="Map of the Kingdom of Altheim" sizes="(min-width: 72rem) 72rem, 100vw" widths={[800, 1200, 1600, 2000]} />
@@ -54,7 +52,7 @@ const places = [
     <div class="wrap">
       <h2>Places in the story</h2>
       <dl class="places">
-        {places.map(([n, d]) => <div><dt>{n}</dt><dd>{d}</dd></div>)}
+        {places.map((p) => <div><Insignia kind={p.kind} field={p.field} label={`Insignia of ${p.name}`} /><dt>{p.name}</dt><dd>{p.text}</dd></div>)}
       </dl>
     </div>
   </section>
@@ -71,6 +69,7 @@ const places = [
   .map :global(img) { border-radius: var(--radius); margin-bottom: .7rem; box-shadow: 0 14px 34px -16px rgb(43 30 20 / .6); }
   .map:hover span { text-decoration: underline; }
   .places { margin: 1rem 0 0; display: grid; gap: 1.2rem 2.5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
+  .places :global(.insignia) { margin-bottom: .7rem; }
   .places dt { font: 600 1.05rem var(--caps); color: var(--crimson); }
   .places dd { margin: .15rem 0 0; }
 </style>

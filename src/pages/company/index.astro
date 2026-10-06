@@ -1,15 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Art from '../../components/Art.astro';
-import { company } from '../../data/company';
+import { company, orderNote } from '../../data/company';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base title="The Company" description="The five adventurers of the Silver-ranked company: Cocoa, Jack of Blades, Seamus, Valith Oakhaven, and Wonnelly Shadowleaf.">
   <section class="section">
     <div class="wrap">
       <div class="narrow intro">
-        <span class="eyebrow">Silver Rank, Adventurers' Guild</span>
         <h1>The Company</h1>
+        <p class="order-note">{orderNote}</p>
         <p class="lede">The five have adventured together since their earliest days in the Guild, long enough to build the friendships, rivalries, habits, and trust expected of people who have survived danger together.</p>
       </div>
       <div class="roster">
@@ -27,7 +27,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   <section class="section">
     <div class="wrap">
-      <span class="eyebrow">Off duty</span>
       <h2>The company, in plastic</h2>
       <div class="legos">
         {company.map((h) => (
@@ -47,6 +46,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <style>
   .intro { margin-inline: 0; }
+  .order-note { font-style: italic; color: var(--ink-soft); }
+  .order-note + .lede { margin-top: 1.1rem; }
   .roster { margin-top: 2.2rem; display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
   .hero-card { border-top: 4px solid var(--accent); }
   .hero-card h2 { font-size: 1.4rem; }
