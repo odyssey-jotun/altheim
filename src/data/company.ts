@@ -24,7 +24,7 @@ export const company: Hero[] = [
     card: 'card-cocoa',
     lego: 'lego-cocoa',
     summary:
-      'A dark-haired paladin in white and silver plate, part elf and part vampyr. Cocoa holds the line with a longsword and a heavy white cloak.',
+      "A young hero distracted by the details of his own growing legend. His strength is rivaled only by his generous heart, and by his fondness for his own reflection.",
     deeds: [
       'Fought the Giant Bats and Blind Fang in White Elk Vale.',
       "Took one of the three white eggs from Blind Fang's cave, and still keeps it.",
@@ -45,7 +45,7 @@ export const company: Hero[] = [
     portrait: 'portrait-groggin',
     lego: 'lego-groggin',
     summary:
-      'A silver-haired Northman in Guild blue who carries his greatsword over one shoulder. A Battle Master treats combat as a craft to be studied, and Jack fights that way: reading the field, then choosing the blow.',
+      "A Northman who studies a fight the way a scholar studies a text, and settles it like a soldier. Jack likes his victories where people can see them, which is why Blind Fang's head now hangs, preserved and mounted, on his wall.",
     deeds: [
       'Fought through the bat colony of White Elk Vale and helped bring down Blind Fang.',
       "Claimed Blind Fang's head as his trophy.",
@@ -67,7 +67,7 @@ export const company: Hero[] = [
     portrait: 'portrait-seamus',
     lego: 'lego-seamus',
     summary:
-      'A red-haired spear fighter whose weapon crackles with a warlock’s borrowed power. Much about Seamus remains a mystery, even to the company.',
+      "A lonely poet who misses his mother, finally out from under the shadow of his father. He took up the spear to make a name for himself on his own terms, and made a pact with strange folk for the strength to wield it.",
     deeds: [
       "Took Blind Fang's wings as his trophy in White Elk Vale.",
       'Fought the wolves at the Fallen Timber.',
@@ -86,7 +86,7 @@ export const company: Hero[] = [
     card: 'card-valith',
     lego: 'lego-valith',
     summary:
-      "A half-elven sorcerer in crimson who calls fire into an open hand. Valith's spells win fights, and at the Fallen Timber they also cost lives.",
+      "A sorcerer whose fire answers faster than her caution. The flames that won the fight at the Fallen Timber also took the workers trapped inside it, and Valith carries that. She is as quick to mend as to burn: her hands set the Silent Bell ringing again.",
     deeds: [
       'Fought the Giant Bats and Blind Fang in White Elk Vale.',
       'Gave one of the three white eggs to a druid investigating the Greybough at Ashmere.',
@@ -106,7 +106,7 @@ export const company: Hero[] = [
     portrait: 'portrait-wonnelly',
     lego: 'lego-wonnelly',
     summary:
-      'A high elven scout in forest green with a crossbow and a tracker’s eye. False trails do not stay false for long around Wonnelly.',
+      "A scout who trusts tracks over testimony. Where the others saw a raid, Wonnelly saw a trail stamped in too neatly to be real, and followed the true one to the goblins' door. As her card says, the wilds leave no secrets for long.",
     deeds: [
       'Fought the Giant Bats and Blind Fang in White Elk Vale.',
       "Took one of the three white eggs from Blind Fang's cave, and still keeps it.",
