@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import Art from '../../components/Art.astro';
+import { chapters } from '../../data/chronicle';
+import { sessions, prologue } from '../../data/sessions';
+
+export function getStaticPaths() {
+  const all = [{ ...prologue, n: 0 }, ...sessions];
+  return all.map((s, i) => ({
+    params: { slug: s.slug },
+    props: { entry: s, prev: all[i - 1] ?? null, next: all[i + 1] ?? null },
+  }));
+}
+
+type Entry = { n: number; slug: string; name: string; summary: string; notes: string[] };
+const { entry, prev, next } = Astro.props as { entry: Entry; prev: Entry | null; next: Entry | null };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const scenes = chapters.filter((c) => c.frontmatter.session === entry.n);
+const isPrologue = entry.n === 0;
+---
+<Base title={entry.name} description={`${entry.name} of the Altheim campaign: ${entry.summary}`}>
+  <header class="section page-head">
+    <div class="wrap narrow-wrap">
+      <h1 class="part">{entry.name}</h1>
+      <p class="part-sub">{entry.summary}</p>
+      {scenes.length > 1 && (
+        <nav class="in-this" aria-label="Scenes in this session">
+          <ol>{scenes.map((c) => <li><a href={`#${c.slug}`}>{c.frontmatter.title}</a></li>)}</ol>
+        </nav>
+      )}
+    </div>
+  </header>
+
+  <div class="wrap narrow-wrap body">
+    {scenes.map((c) => (
+      <article class="scene" id={c.slug}>
+        {!isPrologue && <h2>{c.frontmatter.title}</h2>}
+        {c.frontmatter.image && (
+          <figure class="scene-art"><Art name={c.frontmatter.image} alt={c.frontmatter.alt ?? ''} sizes="(min-width: 64rem) 40rem, 100vw" /></figure>
+        )}
+        <div class="flow prose dropcap"><c.Content /></div>
+      </article>
+    ))}
+
+    <nav class="pager" aria-label="Other sessions">
+      {prev ? <a class="pg prev" href={`${base}/chronicle/${prev.slug}/`}><span>Earlier</span>{prev.name}</a> : <span />}
+      <a class="pg all" href={`${base}/chronicle/`}>All sessions</a>
+      {next ? <a class="pg next" href={`${base}/chronicle/${next.slug}/`}><span>Later</span>{next.name}</a> : <span />}
+    </nav>
+  </div>
+</Base>
+
+<style>
+  .page-head { padding-bottom: 1.5rem; }
+  .narrow-wrap { max-width: calc(var(--measure) + 2 * var(--gutter)); }
+  .part { font: 400 clamp(2.4rem, 6vw, 3.4rem)/1.05 var(--display); color: var(--crimson); letter-spacing: 0; }
+  .part-sub { font-style: italic; font-size: 1.25rem; color: var(--ink-soft); margin-top: .6rem; }
+  .in-this { margin-top: 1.4rem; }
+  .in-this ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .5rem .9rem; }
+  .in-this a { color: var(--ink); font-style: italic; text-decoration: none; border-bottom: 1px solid var(--gold-soft); }
+  .in-this a:hover { color: var(--crimson); }
+
+  .body { padding-bottom: var(--flow-section); }
+  .scene { scroll-margin-top: 1rem; }
+  .scene + .scene { margin-top: 3.2rem; }
+  .scene h2 { font-size: 1.6rem; }
+  .scene-art { margin-top: 1rem !important; }
+  .scene-art + .prose { margin-top: 1.5rem; }
+  h2 + .prose { margin-top: 1rem !important; }
+  .prose :global(blockquote) { margin-block: 1.4rem; }
+
+  .pager { margin-top: var(--flow-section); display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; border-top: 1px solid var(--gold-soft); padding-top: 1.4rem; }
+  .pg { color: var(--crimson); text-decoration: none; font-weight: 600; line-height: 1.3; }
+  .pg span { display: block; font: 600 .78rem var(--caps); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: .15rem; }
+  .pg.next { text-align: right; }
+  .pg.all { font: 600 .85rem var(--caps); letter-spacing: .08em; text-transform: uppercase; }
+  .pg:hover { text-decoration: underline; }
+  @media (max-width: 36rem) {
+    .pager { grid-template-columns: 1fr 1fr; }
+    .pg.all { grid-column: 1 / -1; text-align: center; order: 3; }
+  }
+</style>

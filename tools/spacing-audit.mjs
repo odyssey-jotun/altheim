@@ -1,5 +1,5 @@
 import { chromium } from 'playwright';
-const pages = ['', 'chronicle/', 'company/', 'company/jack-of-blades/', 'company/cocoa/', 'kingdom/', 'people/', 'bestiary/', 'gallery/'];
+const pages = ['', 'chronicle/', 'chronicle/prologue/', 'chronicle/session-1/', 'chronicle/session-5/', 'company/', 'company/jack-of-blades/', 'company/cocoa/', 'kingdom/', 'people/', 'bestiary/', 'gallery/'];
 const b = await chromium.launch();
 for (const w of [390, 1440]) {
   const p = await b.newPage({ viewport: { width: w, height: 900 } });

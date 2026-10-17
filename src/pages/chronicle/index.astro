@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import { sessions, prologue } from '../../data/sessions';
+import { questions } from '../../data/world';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const count = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'][sessions.length] ?? sessions.length;
+const entries = [prologue, ...sessions];
+---
+<Base title="The Story So Far" description="The Altheim campaign session by session: quick notes on each, and a full page for every session.">
+  <header class="section page-head">
+    <div class="wrap">
+      <h1>The Story So Far</h1>
+      <p class="lede">{count} sessions in. Quick notes on each one here, and a full page for every session.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <ol class="notes">
+      {entries.map((s) => (
+        <li class="note" id={'n' in s ? `session-${s.n}` : s.slug}>
+          <div class="note-head">
+            {'n' in s ? <span class="sn" aria-hidden="true">{s.n}</span> : <span class="sn fleur" aria-hidden="true">❦</span>}
+            <div>
+              <h2>{s.name}</h2>
+              <p class="sum">{s.summary}</p>
+            </div>
+          </div>
+          <ul class="quick">{s.notes.map((t) => <li>{t}</li>)}</ul>
+          <p class="more"><a href={`${base}/chronicle/${s.slug}/`}>Read {'n' in s ? s.name : 'the prologue'} in full</a></p>
+        </li>
+      ))}
+    </ol>
+
+    <section class="stands" id="where-it-stands">
+      <h2>Where the Chronicle Stands</h2>
+      <div class="flow prose">
+        <p>The company now stands at the beginning of a much larger story.</p>
+        <p>They have gone from local adventurers proving themselves to Silver-ranked agents of the Guild. They have defeated Blind Fang. They have survived the unintended tragedy at Fallen Timber. They have carried Blind Fang's eggs out of White Elk Vale. They have uncovered and destroyed a goblin stronghold. They have freed captives and restored a Guild watchtower. They have gone down into a dwarven mine, fought the frost mephits its miners took for poltergeists, and found the cult of the ice goddess Oral waiting on the frozen level below.</p>
+        <p>And they have allowed at least one enemy to escape who has every reason to remember them.</p>
+        <h3>Questions still unanswered</h3>
+        <ul>{questions.map((q) => <li>{q}</li>)}</ul>
+        <p>King Aldric still has no heir. The Four Houses remain united, for now. And high above the warm valleys of Altheim stand the mountains from which the frost giants once descended.</p>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .page-head { padding-bottom: 2rem; }
+  .notes { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.4rem; max-width: 46rem; }
+  .note { background: var(--vellum); border: 1px solid var(--gold-soft); border-radius: var(--radius); padding: 1.4rem 1.5rem 1.5rem; scroll-margin-top: 1rem; }
+  .note-head { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; }
+  .sn { font: 400 2.6rem/1 var(--display); color: var(--crimson); min-width: 1.6rem; text-align: center; padding-top: .1rem; }
+  .sn.fleur { color: var(--gold); font-size: 2.2rem; }
+  .note h2 { font-size: 1.6rem; line-height: 1.1; }
+  .sum { font-style: italic; color: var(--ink-soft); margin-top: .35rem; font-size: 1.08rem; }
+  .quick { margin: 1.1rem 0 0; padding-left: 1.2rem; }
+  .quick li + li { margin-top: .5em; }
+  .quick li::marker { color: var(--gold); }
+  .more { margin-top: 1.1rem; }
+  .more a { color: var(--crimson); font: 600 .95rem var(--caps); letter-spacing: .06em; text-transform: uppercase; text-decoration: none; }
+  .more a:hover { text-decoration: underline; }
+
+  .stands { margin-top: var(--flow-section); max-width: var(--measure); scroll-margin-top: 1rem; }
+  .stands h2 { font: 400 clamp(2.2rem, 5vw, 3rem)/1.05 var(--display); color: var(--crimson); letter-spacing: 0; }
+  .stands h2 + .prose { margin-top: 1rem !important; }
+  .prose ul { padding-left: 1.2rem; }
+  .prose li + li { margin-top: .4em; }
+  .prose li::marker { color: var(--gold); }
+</style>
