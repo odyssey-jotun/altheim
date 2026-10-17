@@ -8,7 +8,7 @@ import { questions } from '../data/world';
 const prologue = chapters.filter((c) => c.frontmatter.session === 0);
 const bySession = sessions.map((s) => ({ ...s, scenes: chapters.filter((c) => c.frontmatter.session === s.n) }));
 ---
-<Base title="The Story So Far" description="The Altheim campaign session by session, from the prologue to the mines.">
+<Base title="The Story So Far" description="The Altheim campaign session by session, from the prologue to Oral's shrine.">
   <header class="section page-head">
     <div class="wrap">
       <h1>The Story So Far</h1>
@@ -65,7 +65,7 @@ const bySession = sessions.map((s) => ({ ...s, scenes: chapters.filter((c) => c.
         <h2 class="part">Where the Chronicle Stands</h2>
         <div class="flow prose">
           <p>The company now stands at the beginning of a much larger story.</p>
-          <p>They have gone from local adventurers proving themselves to Silver-ranked agents of the Guild. They have defeated Blind Fang. They have survived the unintended tragedy at Fallen Timber. They have carried Blind Fang's eggs out of White Elk Vale. They have uncovered and destroyed a goblin stronghold. They have freed captives and restored a Guild watchtower. They have gone down into a dwarven mine and fought the ice elementals its miners took for poltergeists.</p>
+          <p>They have gone from local adventurers proving themselves to Silver-ranked agents of the Guild. They have defeated Blind Fang. They have survived the unintended tragedy at Fallen Timber. They have carried Blind Fang's eggs out of White Elk Vale. They have uncovered and destroyed a goblin stronghold. They have freed captives and restored a Guild watchtower. They have gone down into a dwarven mine, fought the frost mephits its miners took for poltergeists, and found the cult of the ice goddess Oral waiting on the frozen level below.</p>
           <p>And they have allowed at least one enemy to escape who has every reason to remember them.</p>
           <h3>Questions still unanswered</h3>
           <ul>{questions.map((q) => <li>{q}</li>)}</ul>

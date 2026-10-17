@@ -38,6 +38,22 @@ export const people: Entry[] = [
     ],
   },
   {
+    name: 'Urso',
+    tag: 'Innkeeper',
+    art: 'innkeeper-and-goose',
+    text: ['An innkeeper, and the keeper of a goose named Brynhildr. Which inn he keeps has not been recorded yet.'],
+  },
+  {
+    name: 'Doric',
+    tag: 'The mining town',
+    text: ["Recognized the company from the Guild's order when they arrived in the mining town, and walked them to the mouth of the haunted mine."],
+  },
+  {
+    name: 'Jorik',
+    tag: 'The mining company',
+    text: ['Told the company that anything found in the mine remains the mining company\'s property. The company filled their pockets with quartz anyway.'],
+  },
+  {
     name: 'Guzzard',
     tag: 'The funny goblin',
     text: ["A goblin the warren's own goblins were holding prisoner. The company freed him in Session Three, he made them laugh, and he left the warren with them."],
@@ -107,9 +123,25 @@ export const bestiary: Entry[] = [
     ],
   },
   {
-    name: 'Ice Elementals',
-    tag: 'The dwarven mine, Session Four',
-    text: ['Small, strange elementals of ice haunting a dwarven mine. The dwarves who worked it took them for poltergeists and were afraid to go below. The company went down and fought them. Their proper name is still unknown.'],
+    name: 'Frost Mephits',
+    tag: 'The dwarven mine',
+    text: ['Small, strange elementals of ice haunting a dwarven mine. The dwarves who worked it took them for poltergeists and were afraid to go below. The company fought them on the first level, and Valith incinerated two more at the door of Oral\'s shrine.'],
+  },
+  {
+    name: 'White Fang',
+    tag: "Oral's shrine, still standing",
+    text: [
+      'A great white wolf, nearly as tall on all fours as Cocoa, that serves the ice goddess Oral and guards her treasure in the mine. It runs across sheet ice as if it were stone, and its breath is a killing cold that dropped Seamus in one blast.',
+      'Cocoa, Jack, and a divine smite have all cut it. It has not fallen.',
+    ],
+  },
+  {
+    name: 'The Cultists of Oral',
+    tag: "Oral's shrine",
+    text: [
+      'Two zealots dressed for the cold in furs and pale blue, so alike they might have been twins, and a frost speaker with a staff and an ornate necklace who could raise a blinding sphere of snow with a word. They claimed the mine for Oral, whose sign supersedes all dwarven contracts.',
+      "Jack and Wonnelly killed the first zealot. Valith's fireball accounted for the other two.",
+    ],
   },
   {
     name: 'Frost Giants',
@@ -123,6 +155,10 @@ export const questions = [
   'What is happening within the Greybough?',
   'What became of the goblin chieftain and those who escaped with him?',
   'What other forces were connected to the events surrounding the Silent Bell?',
+  "Who is Oral, and what is the treasure her cultists and her wolf were guarding in the mine?",
+  'Whose laughter echoes in the glowing cracks of the frozen level, and why did it sound familiar to Seamus?',
+  'What is the glowing water Seamus carries in his canteen?',
+  'Will White Fang fall, and will Seamus rise again?',
   'Who will rule when King Aldric, who has no heir, is gone?',
   'Will the Four Houses stay united?',
   'Will the frost giants come down from the mountains again?',
