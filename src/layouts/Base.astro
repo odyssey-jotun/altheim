@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { sessions, prologue } from '../data/sessions';
 
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
@@ -13,6 +14,10 @@ const nav = [
   ['/bestiary/', 'Bestiary'],
   ['/gallery/', 'Gallery'],
 ];
+const story = [{ slug: prologue.slug, short: 'Prologue' }, ...sessions.map((s) => ({ slug: s.slug, short: s.name.replace('Session ', '') }))];
+const onStory = path.startsWith(base + '/chronicle/');
+const storyHref = (slug: string) => `${base}/chronicle/${slug}/`;
+const isHere = (href: string) => path === href || path === href.replace(/\/$/, '');
 const fullTitle = title === 'The Chronicle of Altheim' ? title : `${title} | The Chronicle of Altheim`;
 ---
 <!doctype html>
@@ -38,12 +43,28 @@ const fullTitle = title === 'The Chronicle of Altheim' ? title : `${title} | The
           </ul>
         </nav>
       </div>
+      {onStory && (
+        <nav class="story-nav" aria-label="The story, session by session">
+          <div class="wrap">
+            <a class="story-all" href={`${base}/chronicle/`} aria-current={isHere(`${base}/chronicle/`) ? 'page' : undefined}>The story</a>
+            <ul>
+              {story.map((s) => (
+                <li><a href={storyHref(s.slug)} aria-current={isHere(storyHref(s.slug)) ? 'page' : undefined}>{s.short}</a></li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+      )}
     </header>
     <main id="main"><slot /></main>
     <footer class="site-foot">
       <div class="wrap">
         <p class="motto">No Crown Stands Alone</p>
         <p>The Chronicle of Altheim, kept by the company of the Adventurers' Guild.</p>
+        <p class="foot-story">
+          <a href={`${base}/chronicle/`}>The story</a>
+          {story.map((s) => <a href={storyHref(s.slug)}>{s.slug === 'prologue' ? 'Prologue' : `Session ${s.short}`}</a>)}
+        </p>
       </div>
     </footer>
   </body>
