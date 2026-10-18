@@ -125,21 +125,21 @@ export const bestiary: Entry[] = [
   {
     name: 'Frost Mephits',
     tag: 'The dwarven mine',
-    text: ['Small, strange elementals of ice haunting a dwarven mine. The dwarves who worked it took them for poltergeists and were afraid to go below. The company fought them on the first level, and Valith incinerated two more at the door of Oral\'s shrine.'],
+    text: ['Small, strange elementals of ice haunting a dwarven mine. The dwarves who worked it took them for poltergeists and were afraid to go below. The company fought them on the first level, and Valith incinerated two more at the door of Auril\'s shrine.'],
   },
   {
     name: 'White Fang',
-    tag: "Oral's shrine, still standing",
+    tag: "Auril's shrine, still standing",
     text: [
-      'A great white wolf, nearly as tall on all fours as Cocoa, that serves the ice goddess Oral and guards her treasure in the mine. It runs across sheet ice as if it were stone, and its breath is a killing cold that dropped Seamus in one blast.',
+      'A great white wolf, nearly as tall on all fours as Cocoa, that serves the ice goddess Auril and guards her treasure in the mine. It runs across sheet ice as if it were stone, and its breath is a killing cold that dropped Seamus in one blast.',
       'Cocoa, Jack, and a divine smite have all cut it. It has not fallen.',
     ],
   },
   {
-    name: 'The Cultists of Oral',
-    tag: "Oral's shrine",
+    name: 'The Cultists of Auril',
+    tag: "Auril's shrine",
     text: [
-      'Two zealots dressed for the cold in furs and pale blue, so alike they might have been twins, and a frost speaker with a staff and an ornate necklace who could raise a blinding sphere of snow with a word. They claimed the mine for Oral, whose sign supersedes all dwarven contracts.',
+      'Two zealots dressed for the cold in furs and pale blue, so alike they might have been twins, and a frost speaker with a staff and an ornate necklace who could raise a blinding sphere of snow with a word. They claimed the mine for Auril, whose sign supersedes all dwarven contracts.',
       "Jack and Wonnelly killed the first zealot. Valith's fireball accounted for the other two.",
     ],
   },
@@ -155,7 +155,7 @@ export const questions = [
   'What is happening within the Greybough?',
   'What became of the goblin chieftain and those who escaped with him?',
   'What other forces were connected to the events surrounding the Silent Bell?',
-  "Who is Oral, and what is the treasure her cultists and her wolf were guarding in the mine?",
+  "Who is Auril, and what is the treasure her cultists and her wolf were guarding in the mine?",
   'Whose laughter echoes in the glowing cracks of the frozen level, and why did it sound familiar to Seamus?',
   'What is the glowing water Seamus carries in his canteen?',
   'Will White Fang fall, and will Seamus rise again?',

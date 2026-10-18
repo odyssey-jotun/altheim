@@ -55,7 +55,7 @@ export const sessions: Session[] = [
     notes: [
       "A family of creatures killed at a mountain shrine. Valith's fireball took two of the young, and Valith told the town a story about raiders.",
       'Doric walked the company to a dwarven mine its own miners had fled, calling it haunted.',
-      'The haunting was frost mephits. On the lift posts, Jack found the snowflake of the ice goddess Oral, a sign Jack knew from Ten Towns.',
+      'The haunting was frost mephits. On the lift posts, Jack found the snowflake of the ice goddess Auril, a sign Jack knew from Ten Towns.',
       'Jack rigged the lift so nothing could come up at them in the night, and the company took a long rest beside it.',
     ],
   },
@@ -63,13 +63,13 @@ export const sessions: Session[] = [
     n: 5,
     slug: 'session-5',
     name: 'Session Five',
-    summary: "The frozen level of the mine, barrels of kerosene, a lantern that burns without oil, and the cultists of the ice goddess Oral and her wolf White Fang.",
+    summary: "The frozen level of the mine, barrels of kerosene, a lantern that burns without oil, and the cultists of the ice goddess Auril and her wolf White Fang.",
     notes: [
       'Down to the frozen level: rime on the tracks, snow falling underground, and a pale blue glow in the cracks that laughed when Seamus touched it.',
       "Barrels of kerosene, loaded two to a cart. An abandoned camp with a miner's log pointing east, crates of quartz, and a lantern that burns without oil, now Seamus's.",
-      "Past Oral's second mark the wind stopped. Two frost mephits died in Valith's fireball, and three cultists of Oral and the great white wolf White Fang came out to defend her treasure.",
+      "Past Auril's second mark the wind stopped. Two frost mephits died in Valith's fireball, and three cultists of Auril and the great white wolf White Fang came out to defend her treasure.",
       "Jack's first natural twenty and Wonnelly's bolt killed a zealot. Valith's second fireball finished the other two. White Fang's breath dropped Seamus.",
-      'The recording ends mid-fight: Seamus down, Jack blind, White Fang still standing.',
+      'The session ended mid-fight: Seamus down, Jack blind, White Fang still standing.',
     ],
   },
 ];
