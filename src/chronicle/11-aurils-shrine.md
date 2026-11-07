@@ -33,4 +33,4 @@ Then White Fang howled, frost built around its jaws, and it breathed killing col
 
 Blind, Jack went for the wolf by its growling and the feel of its fur, missed once, and then opened a long wound in its side. White Fang was bleeding from three of them now, and still up.
 
-The night ended there, in the middle of the fight, on Wonnelly's turn. Seamus is down, Jack cannot see, and the great white wolf of Auril has not fallen.
+Seamus was down, Jack could not see, and the great white wolf of Auril was still standing.
