@@ -3,18 +3,10 @@ order: 12
 session: 5
 title: "The Winter Heart"
 ---
-White Fang fell. The cultists fell after.
+White Fang finally went down, and the last of the cultists went with it. Seamus watched the end of the fight from the floor of the shrine (not his finest moment). Jack kept a strip of the wolf's fur for a collar.
 
-Seamus saw the end of it from the floor.
+Before he died, one of the cultists told us we weren't worthy of "it." It turned out "it" was a shard pulsing blue behind the ice of the shrine wall. The cultists had been chiseling toward it, and it was the reason for all the snow. So we finished their work and pried it out. The light went out of the stone, and the snow stopped.
 
-The last cultist spent his last breath on an insult. "Unworthy."
+The dwarves of Keldrun were thrilled. Doric, however, pulled us aside. His scouts had watched our fight with the sleighbacks from a bluff above the mountain shrine. The first hit looked like an honest misunderstanding. Killing the rest of the family and cutting off their tails looked a lot worse.
 
-Behind the ice, something blue was beating. The company pried it from the wall, and the snow stopped.
-
-Jack kept a strip of the wolf for a collar.
-
-Keldrun cheered. Doric took them aside.
-
-His scouts had seen the sleighbacks die. The first blow, a mistake. The rest, a choice. Then the tails.
-
-The dwarves asked for no blood. Only the pearl, and the right to forge it properly.
+The dwarves asked for respect instead of blood. They wanted to turn the pearl into armor the way their people do it, with a ceremony.
