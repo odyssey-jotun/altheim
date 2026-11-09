@@ -2,12 +2,14 @@
 order: 14
 session: 6
 title: "Hold the Road"
+image: spectral-bova
+alt: "Bova, a round, glowing, see-through cow, standing in a meadow"
 ---
-On the way home to Caldmere the company stopped at Crosshouse Pastures for another round of the S-rank cream, the milk that leaves a mustache and a little heroic inspiration behind. Bruno, who drives the dairy's wagon, was still missing. His sister had not seen him in days.
+On the way home to Caldmere the company stopped at Frostlass Pastures for another round of the S-rank cream, the milk that leaves a mustache and a little heroic inspiration behind. Bruno, who drives the dairy's wagon, was still missing. His sister had not seen him in days.
 
 Back on the main road, the company found wagon tracks turning down an old dirt road nobody used anymore.
 
-At the end of it stood a camp on a plateau: cabins, a fenced pen, a well, a watchtower, and a Crosshouse wagon, busted and spattered with mud, dragged across the road as a barricade. A second wagon blocked the other way.
+At the end of it stood a camp on a plateau: cabins, a fenced pen, a well, a watchtower, and a Frostlass wagon, busted and spattered with mud, dragged across the road as a barricade. A second wagon blocked the other way.
 
 A halfling came out from behind the barricade, weathered, somewhere around fifty. He locked eyes with Wonnelly.
 

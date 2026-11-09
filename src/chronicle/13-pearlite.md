@@ -2,6 +2,8 @@
 order: 13
 session: 6
 title: "Pearlite"
+image: pearlite-groggin
+alt: "Jack of Blades in the new pearlite plate, a fur-trimmed blue cloak, sword over one shoulder, snowy mountains behind"
 ---
 The dwarven smith set down his everyday hammer and took up the jeweled ceremonial one. The work took three days.
 

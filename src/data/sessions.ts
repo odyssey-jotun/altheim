@@ -80,7 +80,7 @@ export const sessions: Session[] = [
     summary: 'Pearlite armor for Jack, a fake Guild toll station on the Caldmere road, Bova\'s Bell, and a contract that can only be read in blood.',
     notes: [
       'Three days at the Rusty Nail Tavern while the dwarves made the sleighback pearls into armor. Jack wears it, and it is very hard to knock down.',
-      "Bruno of Crosshouse Pastures found in the cellar of a fake Guild toll station run by Tobin Rook, Wonnelly's old lieutenant in the city guard. Valith burned the tower down, and Cocoa took a swordsman's head off into a doorframe.",
+      "Bruno of Frostlass Pastures found in the cellar of a fake Guild toll station run by Tobin Rook, Wonnelly's old lieutenant in the city guard. Valith burned the tower down, and Cocoa took a swordsman's head off into a doorframe.",
       'The company turned in Tobin, his ledger, and all 521 gold. Bruno gave them Bova\'s Bell, and the Guild raised False Silver from 180 gold to 300.',
       "Guzzard ate one of Blind Fang's eggs. Jenkins named the Winter Heart and offered 7,000 gold for it. The company kept it, and Bimble pointed them to an undead smith at Cairn Mordun in the Old Teeth.",
       "Next: the Fire at Zahara's Glassworks, then The Quiet Exchange, a covenant contract from Alistair Vale of House Dawn. The company voted three to two to read it now.",

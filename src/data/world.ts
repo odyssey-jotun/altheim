@@ -63,7 +63,7 @@ export const people: Entry[] = [
   },
   {
     name: 'Bruno',
-    tag: 'Crosshouse Pastures',
+    tag: 'Frostlass Pastures',
     text: ["Drives the wagon for the dairy whose S-rank cream leaves a mustache and a little heroic inspiration. Tobin Rook's men threw him in a cellar for asking whether they were really from the Guild. The company got him out, and he gave them Bova's Bell, which has been in his family for generations."],
   },
   {

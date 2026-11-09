@@ -2,6 +2,8 @@
 order: 15
 session: 6
 title: "The Parade of Integrity"
+image: prism-palace
+alt: "Penguins in waistcoats carrying books and a glowing bottle across the floor of the Prism Palace"
 ---
 Tobin walked into Caldmere tied up behind Seamus's spectral steed, which carried the chest. People stopped in the street. The guards at the gate stared at the insignias.
 
