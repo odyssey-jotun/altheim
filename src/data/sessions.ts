@@ -70,7 +70,7 @@ export const sessions: Session[] = [
       "Past Auril's second mark the wind stopped. Two frost mephits died in Valith's fireball, and three cultists of Auril and the great white wolf White Fang came out to defend her treasure.",
       "Jack's first natural twenty and Wonnelly's bolt killed a zealot. Valith's second fireball finished the other two. White Fang's breath dropped Seamus.",
       "White Fang and the last cultist fell. Behind the shrine's ice the company found the Winter Heart, the source of the cold, and pried it out. The snow stopped.",
-      "Doric's scouts had watched the sleighbacks die at the mountain shrine. The dwarves asked only that the pearls from their tails be made into armor, by ceremony.",
+      "Doric's scouts had watched the slatebacks die at the mountain shrine. The dwarves asked only that the pearls from their tails be made into armor, by ceremony.",
     ],
   },
   {
@@ -79,7 +79,7 @@ export const sessions: Session[] = [
     name: 'Session Six',
     summary: 'Pearlite armor for Jack, a fake Guild toll station on the Caldmere road, Bova\'s Bell, and a contract that can only be read in blood.',
     notes: [
-      'Three days at the Rusty Nail Tavern while the dwarves made the sleighback pearls into armor. Jack wears it, and it is very hard to knock down.',
+      'Three days at the Rusty Nail Tavern while the dwarves made the slateback pearls into armor. Jack wears it, and it is very hard to knock down.',
       "Bruno of Frostlass Pastures found in the cellar of a fake Guild toll station run by Tobin Rook, Wonnelly's old lieutenant in the city guard. Valith burned the tower down, and Cocoa took a swordsman's head off into a doorframe.",
       'The company turned in Tobin, his ledger, and all 521 gold. Bruno gave them Bova\'s Bell, and the Guild raised False Silver from 180 gold to 300.',
       "Guzzard ate one of Blind Fang's eggs. Jenkins named the Winter Heart and offered 7,000 gold for it. The company kept it, and Bimble pointed them to an undead smith at Cairn Mordun in the Old Teeth.",

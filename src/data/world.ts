@@ -49,7 +49,7 @@ export const people: Entry[] = [
   {
     name: 'Doric',
     tag: 'The mining town',
-    text: ["Recognized the company from the Guild's order when they arrived in Keldrun, and walked them to the mouth of the haunted mine. Afterward his scouts told him what happened to the sleighbacks, and he asked only that their pearls be made into armor."],
+    text: ["Recognized the company from the Guild's order when they arrived in Keldrun, and walked them to the mouth of the haunted mine. Afterward his scouts told him what happened to the slatebacks, and he asked only that their pearls be made into armor."],
   },
   {
     name: 'Jorik',
@@ -146,9 +146,9 @@ export const bestiary: Entry[] = [
     ],
   },
   {
-    name: 'Sleighbacks',
+    name: 'Slatebacks',
     tag: 'The mountain shrine',
-    text: ["Short-legged, low-built creatures whose tails grow a pearl. The company killed a family of them at a mountain shrine, and dwarven scouts saw it. When a sleighback dies naturally, the dwarves make its pearl into armor by ceremony, and Jack wears theirs now."],
+    text: ["Short-legged, low-built creatures whose tails grow a pearl. The company killed a family of them at a mountain shrine, and dwarven scouts saw it. When a slateback dies naturally, the dwarves make its pearl into armor by ceremony, and Jack wears theirs now."],
   },
   {
     name: 'Frost Mephits',
